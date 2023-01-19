@@ -13,7 +13,6 @@ const Navbar = () => {
         width= '100%'
         justifyContent="space-between"
         alignItems="center"
-
     >
        <NavLink to='/'><span>Logo</span></NavLink>
        <Box
@@ -21,7 +20,7 @@ const Navbar = () => {
           gap='1rem'
        > 
           <NavLink to='/'><span><HomeIcon style={{fontSize: '25px'}} /></span></NavLink>
-          <NavLink to='/favorite'><span><FavoriteIcon style={{fontSize: '25px'}} /></span></NavLink>
+          <NavLink to=''><span><FavoriteIcon style={{fontSize: '25px'}} /></span></NavLink>
           <NavLink to=''><span><MoonIcon style={{fontSize: '25px'}} /></span></NavLink>
        </Box>
     </Box>

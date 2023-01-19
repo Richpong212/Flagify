@@ -15,13 +15,6 @@ const Banner = () => {
        >
             <Heading letterSpacing='1rem' size='6xl' fontSize={'6rem'} >Flagify</Heading>
             <Text letterSpacing='0.5rem'>Country-data, made elegantly simple</Text>            
-                <Input 
-                    placeholder="Search for a country..." size="lg" mt='1rem' 
-                    w='100%'
-                    h={'3rem'}
-                    borderRadius='0.5rem'
-                    p={10}
-                />
        </Box>
     </Box>
   )

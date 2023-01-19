@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box,Image } from '@chakra-ui/react'
+import { Box,Image, Input } from '@chakra-ui/react'
 import Banner from '../components/Banner'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import axios from 'axios'
@@ -9,6 +9,8 @@ import { NavLink } from 'react-router-dom';
 
 const HomePage = () => {
   const [countries, setCountries] = useState([])
+
+
 
   // fetching the data
   useEffect(() => {
@@ -21,15 +23,39 @@ const HomePage = () => {
        }
         setTimeout(() => {
           fetchCountries()
-        }, 3000)
+        }, 2000)
      } catch (error) {
        console.log(error)
      }
   }, [])
 
+  // handleSearch
+  const handleSearch = (e: any) => {
+    if(!e.target.value) return setCountries(countries)    
+
+    const searchResult = countries.filter((country: any) => {
+      return country.name.official.toLowerCase().includes(e.target.value.toLowerCase())
+    })
+    setCountries(searchResult)
+  }
+
+
   return (
     <Box>
-       <Banner />
+       <Banner  />
+       <Box>
+         <Input 
+            placeholder="Search for a country..." size="lg" mt='1rem' 
+             w='100%'
+             h={'3rem'}
+             borderRadius='0.5rem'
+             p={10}
+             id="search"
+             onChange={handleSearch}
+             onKeyDown={handleSearch}
+             onBlur={() => setCountries(countries)}
+         />
+       </Box>
        {/* heading */}
        <Box
           display="flex"
@@ -62,11 +88,11 @@ const HomePage = () => {
                    boxSize="50px"
                   />
                 </NavLink>
-                <NavLink to={`/country/${country.latlng}`}><span className='country__span'>{country.name.official}</span></NavLink>
-                <NavLink to={`/country/${country.latlng}`}><span className='country__span'>{country.region}</span></NavLink>
-                <NavLink to={`/country/${country.latlng}`}><span className='country__span'>{country.capital}</span></NavLink>
-                <NavLink to={`/country/${country.latlng}`}><span className='country__span'>{country.population}</span></NavLink>
-                <NavLink to={`/country/${country.latlng}`}><span className='country__span'><FavoriteIcon /></span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.name.official.split(' ')[0]}</span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.region}</span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.capital}</span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.population}</span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span className='country__span'><FavoriteIcon /></span></NavLink>
              </Box>
             <hr style={{width: '100%'}} />
             </Box>
