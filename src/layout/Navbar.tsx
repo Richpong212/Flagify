@@ -14,7 +14,7 @@ const Navbar = () => {
         justifyContent="space-between"
         alignItems="center"
     >
-       <NavLink to='/'><span>Logo</span></NavLink>
+       <NavLink to='/'><span>CodeGenitor</span></NavLink>
        <Box
           display="flex"
           gap='1rem'
