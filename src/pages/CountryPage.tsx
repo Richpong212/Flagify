@@ -102,7 +102,7 @@ const CountryPage = () => {
                          border='none'
                          fontSize='1.2rem'
                          margin= '10px 0'
-                        >Borders: {item.borders[0]}, {item.borders[1]}
+                        >Borders: {item.borders}
                         </MenuItem>
                       </MenuList>
                     </Menu>

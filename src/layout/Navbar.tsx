@@ -4,9 +4,14 @@ import HomeIcon from '@mui/icons-material/Home';
 import { MoonIcon } from '@chakra-ui/icons'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {  NavLink } from 'react-router-dom'
+import { Badge } from '@mui/material'
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
+   // get state from redux store
+   const Fav = useSelector((state: any) => state.favorite.value)
+
   return (
     <Box
         display="flex"
@@ -20,7 +25,14 @@ const Navbar = () => {
           gap='1rem'
        > 
           <NavLink to='/'><span><HomeIcon style={{fontSize: '25px'}} /></span></NavLink>
-          <NavLink to=''><span><FavoriteIcon style={{fontSize: '25px'}} /></span></NavLink>
+          <NavLink to=''>
+             <Badge
+              badgeContent={Fav}
+              color="primary"
+             >
+               <FavoriteIcon style={{fontSize: '25px'}} />
+             </Badge>
+          </NavLink>
           <NavLink to=''><span><MoonIcon style={{fontSize: '25px'}} /></span></NavLink>
        </Box>
     </Box>

@@ -5,11 +5,21 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import axios from 'axios'
 import LoadingGlobe from '../components/LoadingGlobe';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment } from '../redux/counterSlice';
 
 
 const HomePage = () => {
   const [countries, setCountries] = useState([])
 
+  //state from redux store
+  const dispatch = useDispatch()
+
+  //handleClick
+  const handleClick = (e:any) => {
+    dispatch(increment())
+    console.log(e.target.id)
+  }
 
 
   // fetching the data
@@ -92,7 +102,13 @@ const HomePage = () => {
                 <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.region}</span></NavLink>
                 <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.capital}</span></NavLink>
                 <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.population}</span></NavLink>
-                <NavLink to={`/country/${country.name.official}`}><span className='country__span'><FavoriteIcon /></span></NavLink>
+                <span 
+                 className='country__span'
+                 style={{cursor: 'pointer'}}
+                 onClick={handleClick}
+                 // id={country.name.official}
+                 id={country.name.official}
+                ><FavoriteIcon /></span>
              </Box>
             <hr style={{width: '100%'}} />
             </Box>
