@@ -5,12 +5,23 @@ import { MoonIcon } from '@chakra-ui/icons'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {  NavLink } from 'react-router-dom'
 import { Badge } from '@mui/material'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeColor, itemColor } from '../redux/colorSlice';
+
 
 
 const Navbar = () => {
    // get state from redux store
    const Fav = useSelector((state: any) => state.favorite.value)
+   const color = useSelector((state: any) => state.backgroundColor.color)
+   const dispatch:any = useDispatch()
+
+   // handle dispatch
+   const handleDistpatch = () => {
+      dispatch(changeColor())
+      dispatch(itemColor())
+   }
+
 
   return (
     <Box
@@ -19,21 +30,39 @@ const Navbar = () => {
         justifyContent="space-between"
         alignItems="center"
     >
-       <NavLink to='/'><span>CodeGenitor</span></NavLink>
+       <NavLink to='/'><span
+            style={{
+               fontSize: '25px',
+               color: color === '#112838' ? '#fff' : '#112838'
+            }}
+       >CodeGenitor</span></NavLink>
        <Box
           display="flex"
           gap='1rem'
        > 
-          <NavLink to='/'><span><HomeIcon style={{fontSize: '25px'}} /></span></NavLink>
+          <NavLink to='/'><span><HomeIcon style={{
+            fontSize: '25px',
+            color: color === '#112838' ? '#fff' : '#112838'
+            }} /></span></NavLink>
           <NavLink to=''>
              <Badge
               badgeContent={Fav}
               color="primary"
              >
-               <FavoriteIcon style={{fontSize: '25px'}} />
+               <FavoriteIcon style={{
+                  fontSize: '25px',
+                  color: color === '#112838' ? '#fff' : '#112838'
+                  }} />
              </Badge>
           </NavLink>
-          <NavLink to=''><span><MoonIcon style={{fontSize: '25px'}} /></span></NavLink>
+          <NavLink
+           to=''
+           ><span
+            onClick={handleDistpatch}
+           ><MoonIcon style={{
+            fontSize: '25px',
+            color: color === '#112838' ? '#fff' : '#112838'
+            }} /></span></NavLink>
        </Box>
     </Box>
   )

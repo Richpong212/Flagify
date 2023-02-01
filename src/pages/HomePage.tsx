@@ -12,6 +12,9 @@ import { increment } from '../redux/counterSlice';
 const HomePage = () => {
   const [countries, setCountries] = useState([])
 
+  const color = useSelector((state: any) => state.backgroundColor.color)
+
+
   //state from redux store
   const dispatch = useDispatch()
 
@@ -98,14 +101,40 @@ const HomePage = () => {
                    boxSize="50px"
                   />
                 </NavLink>
-                <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.name.official.split(' ')[0]}</span></NavLink>
-                <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.region}</span></NavLink>
-                <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.capital}</span></NavLink>
-                <NavLink to={`/country/${country.name.official}`}><span className='country__span'>{country.population}</span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span
+                 style={{
+                   cursor: 'pointer',
+                   color: color === '#112838' ? '#fff' : '#112838'
+                  }}
+                 className='country__span'>{country.name.official.split(' ')[0]}</span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span 
+                className='country__span'
+                style={{
+                  cursor: 'pointer',
+                  color: color === '#112838' ? '#fff' : '#112838'
+                 }}
+                >{country.region}</span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span 
+                className='country__span'
+                style={{
+                  cursor: 'pointer',
+                  color: color === '#112838' ? '#fff' : '#112838'
+                 }}
+                >{country.capital}</span></NavLink>
+                <NavLink to={`/country/${country.name.official}`}><span 
+                className='country__span'
+                style={{
+                  cursor: 'pointer',
+                  color: color === '#112838' ? '#fff' : '#112838'
+                 }}
+                >{country.population}</span></NavLink>
                 <span 
                  className='country__span'
-                 style={{cursor: 'pointer'}}
                  onClick={handleClick}
+                 style={{
+                  cursor: 'pointer',
+                  color: color === '#112838' ? '#fff' : '#112838'
+                 }}
                  // id={country.name.official}
                  id={country.name.official}
                 ><FavoriteIcon /></span>
